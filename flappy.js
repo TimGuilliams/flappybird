@@ -17,7 +17,7 @@ var player;
 function preload() {
     game.load.image("playerImg", "assets/flappy_superman.png");
     game.load.audio("score","assets/point.ogg");
-    game.load.image("pipe", "assets/pipe_orange.png");
+    game.load.image("pipe", "assets/pipe2-body.png");
 }
 
 /*
@@ -34,19 +34,26 @@ function create() {
     //game.input.keyboard.addKey(Phaser.Keyboard.LEFT).onDown.add(moveLeft);
     //game.input.keyboard.addKey(Phaser.Keyboard.UP).onDown.add(moveUp);
     //game.input.keyboard.addKey(Phaser.Keyboard.DOWN).onDown.add(moveDown);
-    game.add.text(50, 200, "We are still the A-Team! (even after pizza!)", {font:"30px Arial",fill:"#CCCCCC"});
+    game.add.text(460, 350, "'Coding is fun!'", {font:"30px Arial",fill:"#CCCCCC"});
     game.add.sprite(650, 410, "pipe");
 
     var hole = Math.floor(Math.random() * 5) + 1;
 
 
     for(var count = 0; count < hole; count ++)  {
-        game.add.sprite(50, 50 * count, "pipe");
+        game.add.sprite(50, 100 * count, "pipe");
     }
     for(var count = hole + 3; count < 10; count ++)  {
-        game.add.sprite(50, 40 * count, "pipe");
+        game.add.sprite(50, 60 * count, "pipe");
     }
 
+
+    for(var count = 0; count < hole; count ++)  {
+        game.add.sprite(200, 50 * count, "pipe");
+    }
+    for(var count = hole + 3; count < 10; count ++)  {
+        game.add.sprite(200, 50 * count, "pipe");
+    }
 
 
     player = game.add.sprite(x, y, "playerImg");
