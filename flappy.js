@@ -17,6 +17,7 @@ var player;
 function preload() {
     game.load.image("playerImg", "assets/flappy_superman.png");
     game.load.audio("score","assets/point.ogg");
+    game.load.image("pipe", "assets/pipe_orange.png");
 }
 
 /*
@@ -27,8 +28,33 @@ function create() {
     game.stage.setBackgroundColor("#FF47A3");
     var x = 0;
     var y = 0;
-    player = game.add.sprite(x, y, "playerImg");
     game.input.onDown.add(clickHandler);
+    //game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(spaceHandler);
+    //game.input.keyboard.addKey(Phaser.Keyboard.RIGHT).onDown.add(moveRight);
+    //game.input.keyboard.addKey(Phaser.Keyboard.LEFT).onDown.add(moveLeft);
+    //game.input.keyboard.addKey(Phaser.Keyboard.UP).onDown.add(moveUp);
+    //game.input.keyboard.addKey(Phaser.Keyboard.DOWN).onDown.add(moveDown);
+    game.add.text(50, 200, "We are still the A-Team! (even after pizza!)", {font:"30px Arial",fill:"#CCCCCC"});
+    game.add.sprite(650, 410, "pipe");
+
+    var hole = Math.floor(Math.random() * 5) + 1;
+
+
+    for(var count = 0; count < hole; count ++)  {
+        game.add.sprite(50, 50 * count, "pipe");
+    }
+    for(var count = hole + 3; count < 10; count ++)  {
+        game.add.sprite(50, 40 * count, "pipe");
+    }
+
+
+
+    player = game.add.sprite(x, y, "playerImg");
+
+    //for(var count = 10; count >= 5; count--) {
+      //  game.add.text(20, 20 * count, "Clap");
+    //}
+
 }
 
 /*
@@ -41,4 +67,24 @@ function update() {
 function clickHandler(event){
     player.x = event.x;
     player.y = event.y;
+}
+
+function moveRight(){
+    player.x+=20;
+
+}
+
+function moveLeft(){
+    player.x+=40;
+
+}
+
+function moveUp(){
+    player.y-=10;
+
+}
+
+function moveDown(){
+    player.y+=55;
+
 }
