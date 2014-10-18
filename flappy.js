@@ -7,14 +7,16 @@ var stateActions = { preload: preload, create: create, update: update };
 // - renderer (go for Phaser.AUTO)
 // - element where the game will be drawn ('game')
 // - actions on the game state (or null for nothing)
-var game = new Phaser.Game(790, 400, Phaser.AUTO, 'game', stateActions);
+var game = new Phaser.Game(700, 410, Phaser.AUTO, 'game', stateActions);
+var score;
+var player;
 
 /*
  * Loads all resources for the game and gives them names.
  */
 function preload() {
-
-
+    game.load.image("playerImg", "assets/flappy_superman.png");
+    game.load.audio("score","assets/point.ogg");
 }
 
 /*
@@ -22,6 +24,11 @@ function preload() {
  */
 function create() {
     // set the background colour of the scene
+    game.stage.setBackgroundColor("#FF47A3");
+    var x = 0;
+    var y = 0;
+    player = game.add.sprite(x, y, "playerImg");
+    game.input.onDown.add(clickHandler);
 }
 
 /*
@@ -29,4 +36,9 @@ function create() {
  */
 function update() {
     
+}
+
+function clickHandler(event){
+    player.x = event.x;
+    player.y = event.y;
 }
